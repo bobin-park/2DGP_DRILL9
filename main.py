@@ -16,7 +16,6 @@ def handle_events():
         else:
             boy.handle_event(event) # SPACE 들어오면, 소년에게 전달.
 
-
 def reset_world():
     global world
     global boy
