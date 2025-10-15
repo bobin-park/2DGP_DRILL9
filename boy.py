@@ -28,6 +28,7 @@ class Run:
 
     def __init__(self, boy):
         self.boy = boy
+        self.boy.y=90
 
     def enter(self,e):
         if right_down(e) or left_up(e):
@@ -91,6 +92,7 @@ class Idle:
 class AutoRun:
     def __init__(self, boy):
         self.boy = boy
+        self.boy.w=self.boy.h=200
 
     def enter(self,e):
         self.boy.dir = self.boy.face_dir
@@ -100,10 +102,11 @@ class AutoRun:
 
     def do(self):
         self.boy.frame = (self.boy.frame + 1) % 8
-        self.boy.x += self.boy.dir * 5
-        self.boy.w += self.boy.calc_num
-        self.boy.h += self.boy.calc_num
-        self.boy.y = 40+ self.boy.h / 2
+        self.boy.x += self.boy.dir * 5 * self.boy.speed
+
+        # self.boy.w += self.boy.calc_num
+        # self.boy.h += self.boy.calc_num
+        # self.boy.y = 40+ self.boy.h / 2
         if self.boy.x > 800:
             #print("right end")
             self.boy.dir = self.boy.face_dir = -1
@@ -111,24 +114,24 @@ class AutoRun:
             #print("left end")
             self.boy.dir = self.boy.face_dir = 1
 
-        if self.boy.w>150:
-            self.boy.calc_num=-1
-        elif self.boy.w<50:
-            self.boy.calc_num=1
+        # if self.boy.w>150:
+        #     self.boy.calc_num=-1
+        # elif self.boy.w<50:
+        #     self.boy.calc_num=1
+
 
 
     def draw(self):
         if self.boy.face_dir == 1: # right
-            self.boy.image.clip_draw(self.boy.frame * 100, 100, 100, 100, self.boy.x , self.boy.y ,self.boy.w,self.boy.h)
+            self.boy.image.clip_draw(self.boy.frame * 100, 100, 100, 100, self.boy.x , self.boy.y+25 ,self.boy.w,self.boy.h)
         else:
-            self.boy.image.clip_draw(self.boy.frame * 100, 0, 100, 100, self.boy.x, self.boy.y,self.boy.w,self.boy.h)
-
+            self.boy.image.clip_draw(self.boy.frame * 100, 0, 100, 100, self.boy.x, self.boy.y+25,self.boy.w,self.boy.h)
 
 class Boy:
     def __init__(self):
         self.x, self.y = 400, 90
         self.w, self.h = 100,100
-        self.speed = 1
+        self.speed = 3
         self.calc_num =1
         self.frame = 0
         self.face_dir = 1
