@@ -101,6 +101,8 @@ class AutoRun:
         pass
 
     def do(self):
+        if get_time() - self.boy.wait_start_time > 5.0:
+            self.boy.state_machine.handle_state_event(('TIME_OUT', None))
         self.boy.frame = (self.boy.frame + 1) % 8
         self.boy.x += self.boy.dir * 5 * self.boy.speed
 
@@ -150,7 +152,7 @@ class Boy:
                 self.SLEEP : {space_down : self.IDLE, akey_down : self.AUTORUN},
                 self.IDLE : {time_out: self.SLEEP, akey_down : self.AUTORUN, right_up: self.RUN, right_down : self.RUN, left_up: self.RUN, left_down : self.RUN},
                 self.RUN : {right_down: self.IDLE, akey_down : self.AUTORUN, right_up: self.IDLE, left_down: self.IDLE,left_up:self.IDLE},
-                self.AUTORUN:{time_out: self.SLEEP,right_down : self.RUN,left_down : self.RUN}
+                self.AUTORUN:{time_out: self.IDLE,right_down : self.RUN,left_down : self.RUN}
             })
 
 
