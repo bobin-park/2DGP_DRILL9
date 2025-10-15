@@ -12,7 +12,7 @@ class StateMachine:
     def draw(self):
         self.cur_state.draw()
 
-    def handle_state_event(self, state_event):
+    def handle_state_event(self, state_event): # state_event 는 호출할 때 타입이 결정됩
         #state_event가 어떤 이벤트인지 체크할 수 있어야함
         for check_event in self.rules[self.cur_state].keys():
             if check_event(state_event):

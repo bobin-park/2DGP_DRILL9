@@ -44,9 +44,6 @@ class Run:
             self.boy.image.clip_draw(self.boy.frame * 100, 100, 100, 100, self.boy.x , self.boy.y ,100,100)
         else: # face_dir == -1: # left
             self.boy.image.clip_draw(self.boy.frame * 100, 0, 100, 100, self.boy.x, self.boy.y,100,100)
-
-
-
 class Sleep:
 
     def __init__(self, boy):
@@ -66,8 +63,6 @@ class Sleep:
             self.boy.image.clip_composite_draw(self.boy.frame * 100, 300, 100, 100, 3.141592/2, '', self.boy.x -25, self.boy.y -25,100,100)
         else: # face_dir == -1: # left
             self.boy.image.clip_composite_draw(self.boy.frame * 100, 200, 100, 100, -3.141592/2, '', self.boy.x+25, self.boy.y-25,100,100)
-
-
 class Idle:
 
     def __init__(self, boy):
@@ -91,7 +86,6 @@ class Idle:
         else: # face_dir == -1: # left
             self.boy.image.clip_draw(self.boy.frame * 100, 200, 100, 100, self.boy.x, self.boy.y)
 
-
 class Boy:
     def __init__(self):
         self.x, self.y = 400, 90
@@ -105,7 +99,9 @@ class Boy:
         self.RUN = Run(self)
         self.state_machine = StateMachine(
             self.IDLE,
-            {
+            { # key : value 형태
+                # ex) self.SLEEP : {space_down : self.IDLE}->self.SLEEP=key ,{space_down : self.IDLE} = value
+                # ex) {space_down : self.IDLE} -> space_down = key , self.IDLE= value
                 self.SLEEP : {space_down : self.IDLE},
                 self.IDLE : {time_out: self.SLEEP, right_up: self.RUN, right_down : self.RUN, left_up: self.RUN, left_down : self.RUN},
                 self.RUN : {right_down: self.IDLE, right_up: self.IDLE, left_down: self.IDLE,left_up:self.IDLE}
