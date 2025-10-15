@@ -103,6 +103,7 @@ class AutoRun:
         self.boy.x += self.boy.dir * 5
         self.boy.w += self.boy.calc_num
         self.boy.h += self.boy.calc_num
+        self.boy.y = 40+ self.boy.h // 2
         if self.boy.x > 800:
             #print("right end")
             self.boy.dir = self.boy.face_dir = -1
@@ -119,7 +120,7 @@ class AutoRun:
     def draw(self):
         if self.boy.face_dir == 1: # right
             self.boy.image.clip_draw(self.boy.frame * 100, 100, 100, 100, self.boy.x , self.boy.y ,self.boy.w,self.boy.h)
-        else: # face_dir == -1: # left
+        else:
             self.boy.image.clip_draw(self.boy.frame * 100, 0, 100, 100, self.boy.x, self.boy.y,self.boy.w,self.boy.h)
 
 
