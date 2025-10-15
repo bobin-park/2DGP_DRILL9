@@ -93,7 +93,7 @@ class AutoRun:
         self.boy = boy
 
     def enter(self,e):
-            self.boy.dir = self.boy.face_dir
+        self.boy.dir = self.boy.face_dir
 
     def exit(self,e):
         pass
@@ -101,6 +101,12 @@ class AutoRun:
     def do(self):
         self.boy.frame = (self.boy.frame + 1) % 8
         self.boy.x += self.boy.dir * 5
+        if self.boy.x > 800:
+            print("right end")
+            self.boy.dir = self.boy.face_dir = -1
+        elif self.boy.x < 25:
+            print("left end")
+            self.boy.dir = self.boy.face_dir = 1
 
     def draw(self):
         if self.boy.face_dir == 1: # right
