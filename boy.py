@@ -121,9 +121,9 @@ class Boy:
             { # key : value 형태
                 # ex) self.SLEEP : {space_down : self.IDLE}->self.SLEEP=key ,{space_down : self.IDLE} = value
                 # ex) {space_down : self.IDLE} -> space_down = key , self.IDLE= value
-                self.SLEEP : {space_down : self.IDLE},
-                self.IDLE : {time_out: self.SLEEP, right_up: self.RUN, right_down : self.RUN, left_up: self.RUN, left_down : self.RUN},
-                self.RUN : {right_down: self.IDLE, right_up: self.IDLE, left_down: self.IDLE,left_up:self.IDLE},
+                self.SLEEP : {space_down : self.IDLE, akey_down : self.AUTORUN},
+                self.IDLE : {time_out: self.SLEEP, akey_down : self.AUTORUN, right_up: self.RUN, right_down : self.RUN, left_up: self.RUN, left_down : self.RUN},
+                self.RUN : {right_down: self.IDLE, akey_down : self.AUTORUN, right_up: self.IDLE, left_down: self.IDLE,left_up:self.IDLE},
                 self.AUTORUN:{time_out: self.SLEEP,right_down : self.RUN,left_down : self.RUN}
             })
 
