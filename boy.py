@@ -103,7 +103,7 @@ class AutoRun:
         self.boy.x += self.boy.dir * 5
         self.boy.w += self.boy.calc_num
         self.boy.h += self.boy.calc_num
-        self.boy.y = 40+ self.boy.h // 2
+        self.boy.y = 40+ self.boy.h / 2
         if self.boy.x > 800:
             #print("right end")
             self.boy.dir = self.boy.face_dir = -1
@@ -128,6 +128,7 @@ class Boy:
     def __init__(self):
         self.x, self.y = 400, 90
         self.w, self.h = 100,100
+        self.speed = 1
         self.calc_num =1
         self.frame = 0
         self.face_dir = 1
