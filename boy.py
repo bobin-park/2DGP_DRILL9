@@ -113,6 +113,7 @@ class Boy:
         self.IDLE = Idle(self)
         self.SLEEP = Sleep(self) #새로운 슬립 상태 생성
         self.RUN = Run(self)
+        self.AUTORUN = AutoRun(self)
         self.state_machine = StateMachine(
             self.IDLE,
             { # key : value 형태
@@ -120,7 +121,8 @@ class Boy:
                 # ex) {space_down : self.IDLE} -> space_down = key , self.IDLE= value
                 self.SLEEP : {space_down : self.IDLE},
                 self.IDLE : {time_out: self.SLEEP, right_up: self.RUN, right_down : self.RUN, left_up: self.RUN, left_down : self.RUN},
-                self.RUN : {right_down: self.IDLE, right_up: self.IDLE, left_down: self.IDLE,left_up:self.IDLE}
+                self.RUN : {right_down: self.IDLE, right_up: self.IDLE, left_down: self.IDLE,left_up:self.IDLE},
+                self.AUTORUN:{time_out: self.SLEEP,right_down : self.RUN,left_down : self.RUN}
             })
 
 
